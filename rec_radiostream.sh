@@ -51,7 +51,7 @@ conn = sqlite3.connect(config['db_path'])
 cursor = conn.cursor()
 
 # 対象テーブルから1件取得
-cursor.execute(f"SELECT stream_url FROM {config['table_name']} WHERE id = 1")
+cursor.execute(f"SELECT {config['column']} FROM {config['table_name']} WHERE id = 1")
 row = cursor.fetchone()
 
 conn.close()

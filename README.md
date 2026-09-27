@@ -28,7 +28,8 @@ cp config.sample.json config.json
 ```json
 {
   "db_path": "/path/to/radiostream.sqlite3",
-  "table_name": "my_table"
+  "table_name": "my_table",
+  "column": "my_column"
 }
 ```
 
