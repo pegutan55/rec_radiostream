@@ -32,20 +32,26 @@ case $channel in
     aspx="https://simul.drdi.st.nhk/live/4/joined/master.m3u8"
     ;;
   "FM")
-    aspx=$(python3 - << 'EOF'
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+    aspx=$(python3 - $SCRIPT_DIR << 'EOF'
 import sqlite3
 import json
+import sys
+
+# シェルが動作しているディレクトリを取得
+SCRIPT_BASE_DiR = sys.argv[1]
 
 # 外部設定ファイルを読み込み
-with open('config.json', 'r', encoding='utf-8') as f:
+with open(SCRIPT_BASE_DiR + '/config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
 
 # DB接続とクエリ実行
 conn = sqlite3.connect(config['db_path'])
 cursor = conn.cursor()
 
-# 例: 対象テーブルから1件取得
-cursor.execute(f"SELECT name FROM {config['table_name']} WHERE id = 1")
+# 対象テーブルから1件取得
+cursor.execute(f"SELECT stream_url FROM {config['table_name']} WHERE id = 1")
 row = cursor.fetchone()
 
 conn.close()
