@@ -39,7 +39,7 @@ cp config.sample.json config.json
 ```
 
 | パラメーター | 説明 | 備考 |
-| :--- | :---: | ---: |
+| :--- | :--- | :--- |
 | channel_name | 録音チャンネル | 下記の対応チャンネルを参照。FMを指定した場合のみ、DBよりURLを取得 |
 | duration_minutes | 録音時間（分） |  |
 | output_directory | 録音データの出力先ディレクトリ |  |
